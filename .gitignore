@@ -1,0 +1,5 @@
+node_modules/
+*.config
+Application/Runtime
+.DS_Store
+.idea
