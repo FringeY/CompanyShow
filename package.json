@@ -1,5 +1,5 @@
 {
-  "name": "waibao",
+  "name": "companyshow",
   "version": "1.0.0",
   "author": {
     "name": "yaosui",
@@ -33,8 +33,6 @@
     "gulp-cache": "^0.4.0",
     "gulp-livereload": "^3.8.1"
   },
-  "main": "gulpfile.js",
   "engines": ">= 0.4.0"
-
 }
 
