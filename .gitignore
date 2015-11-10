@@ -1,5 +1,6 @@
 node_modules/
 *.config
-Application/Runtime
+Application/Runtime/*
 .DS_Store
 .idea
+config.php
