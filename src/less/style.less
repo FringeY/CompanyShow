@@ -219,15 +219,26 @@ html, body {
         box-sizing: border-box;
         padding: 0 15px;
         .input-group {
+          margin-bottom: 15px;
           label {
-
+            display: inline-block;
+            margin-bottom: 10px;
           }
-          input {
+          input,textarea {
             display: block;
+            width: 100%;
+            background-color: transparent;
+            line-height: 1.8em;
+            border: 1px solid #fff;
+            border-radius: 4px;
+            color: #fff;
+            padding: 6px 12px;
+            box-sizing: border-box;
+            outline: none;
           }
-          textarea {
-            display: block;
-          }
+        }
+        .btn-more {
+          float: right;
         }
       }
       .form-right {
@@ -237,10 +248,19 @@ html, body {
         box-sizing: border-box;
         padding: 0 15px;
         h3 {
-          font-size: 20px;
+          font-size: 24px;
           font-weight: lighter;
           line-height: 1.8em;
+          margin-bottom: 10px;
           text-align: left;
+        }
+        ul {
+          li {
+            line-height: 1.8em;
+            span {
+
+            }
+          }
         }
       }
     }
@@ -265,7 +285,6 @@ html, body {
     height: 100px;
     line-height: 100px;
     text-align: center;
-    margin-top: 40px;
     color: #fff;
     background-color: rgba(0,0,0,0.3);
   }
