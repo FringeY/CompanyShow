@@ -4,6 +4,7 @@ var scrollPage = (function (window) {
         $pagenum = 0,
         $scroll = 1,    //开启自动滚动
         $running = 0,   //是否有动画进行中
+        $scrollTop = 0,    //页面相对高度
         $pages = {};
 
     var init = function () {
@@ -33,6 +34,7 @@ var scrollPage = (function (window) {
             $('.content').stop();
         }
         $running = 1;
+        $scrollTop = $pages[$p];
         $('.content').animate({
             scrollTop: $pages[$p]
         }, 300, 'swing', function () {
@@ -43,6 +45,7 @@ var scrollPage = (function (window) {
     var _wheellisten = function () {
         $(window).on('mousewheel', function () {
             var scrollY = $('.content').scrollTop();
+            $scrollTop = scrollY;
             if (scrollY > $pages[$page]) {
                 if (scrollY >= $pages[$page + 1]) {
                     ++$page;
@@ -60,43 +63,60 @@ var scrollPage = (function (window) {
     };
 
     var _hashlisten = function () {
-        window.onhashchange= function () {
+        window.addEventListener('hashchange', function () {
             $page = isNaN(location.hash.slice(1)) ? 0 : location.hash.slice(1) * 1;
             $page = $page >= $pagenum ? 0 : $page;
             $('.active').removeClass('active');
             $('.nav-li').eq($page).addClass('active');
             _slide($page, $scroll);
-        };
+        });
     };
 
     return {
-        init: init
+        init: init,
+        scrollTop: function () {
+            return $scrollTop;
+        }
     };
 })(window);
 
 //返回顶部
 var toTop = (function () {
     var init = function () {
-
-        $('.top-icon').on('click', function () {
+        $('.toTop').on('click', function () {
            _top();
         });
+        _display();
+        if (scrollPage.scrollTop() > $(window).height() && $('.toTop').css('display') == 'none') {
+            $('.toTop').fadeIn(500, 'swing');
+        }
     };
 
     var _display = function () {
         $(window).on('mousewheel', function () {
-            //$('.content').scrollTop() > $(window).height() ? '' : '' ;
+            if (scrollPage.scrollTop() > $(window).height() && $('.toTop').css('display') == 'none') {
+                $('.toTop').fadeIn(500, 'swing');
+            } else if (scrollPage.scrollTop() <= $(window).height() && $('.toTop').css('display') == 'block') {
+                $('.toTop').fadeOut(500, 'swing');
+            }
+        });
+        window.addEventListener('hashchange', function () {
+            if (scrollPage.scrollTop() > $(window).height() && $('.toTop').css('display') == 'none') {
+                $('.toTop').fadeIn(500, 'swing');
+            } else if (scrollPage.scrollTop() <= $(window).height() && $('.toTop').css('display') == 'block') {
+                $('.toTop').fadeOut(500, 'swing');
+            }
         });
     };
 
     var _top = function () {
-        loaction.hash = 0;
+        location.hash = 0;
     };
 
     return {
         init: init
     };
-})();
+})(window);
 
 //背景转换
 var fade = (function () {
@@ -123,14 +143,14 @@ var fade = (function () {
         $timer = setTimeout(function () {
             $bg = $bg++ >= $bgnum - 1 ? 0 : $bg;
             _fadeIn();
-            $timer = clearTimeout();
+            clearTimeout($timer);
         }, 5000);
     };
 
     return {
         init: init
     };
-})();
+})(window);
 
 $(window).load(function () {
     scrollPage.init();
