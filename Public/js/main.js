@@ -129,7 +129,7 @@ var fade = (function () {
     };
 
     var _fadeIn = function () {
-        $('.back').append('<img class="shadow" style="display:none;" src="' + $bgs[$bg] + '">');
+        $('.back').append('<img class="shadow" style="display:none;width:100%;" src="' + $bgs[$bg] + '">');
         $('.back .bg').fadeOut(1500, 'swing');
         $('.back .shadow').fadeIn(3000, 'swing', function () {
             $('.back .bg').attr('src', $bgs[$bg]);
