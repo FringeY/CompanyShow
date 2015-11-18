@@ -18,6 +18,9 @@
             imgs[i].src = ele;
             imgs[i].onload = function () {
                 imgLoad++;
+                if (imgLoad == $bgs.length) {
+                    $('.load-back').fadeOut(3000, 'swing');
+                }
             }
         });
     </script>
@@ -248,10 +251,5 @@
     <div class="modals" id="modal1">
 
     </div>
-    <script>
-        if (imgLoad == $bgs.length) {
-            $('.load-back').fadeOut(3000, 'swing');
-        }
-    </script>
 </body>
 </html>
