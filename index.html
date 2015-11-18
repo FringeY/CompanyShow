@@ -12,10 +12,13 @@
     <script src="Public/js/main.js"></script>
     <script>
         var $bgs = ['Public/img/bg1.png', 'Public/img/bg2.jpg', 'Public/img/bg3.jpg'],
-                imgs = [];
+                imgs = [], imgLoad = 0;
         $.each($bgs, function (i, ele) {
             imgs[i] = new Image();
             imgs[i].src = ele;
+            imgs[i].load = function () {
+                imgLoad++;
+            }
         });
     </script>
 </head>
@@ -242,8 +245,13 @@
     <div class="back">
         <img class="bg" src="Public/img/bg1.png" alt="">
     </div>
+    <div class="modals" id="modal1">
+
+    </div>
     <script>
-        $('.load-back').fadeOut(3000, 'swing');
+        if (imgLoad == $bgs.length) {
+            $('.load-back').fadeOut(3000, 'swing');
+        }
     </script>
 </body>
 </html>
