@@ -1,13 +1,15 @@
-//页面滚动
+// 页面滚动
 var scrollPage = (function (window) {
-    var $page = 0,
-        $pagenum = 0,
-        $scroll = 1,    //开启自动滚动
-        $running = 0,   //是否有动画进行中
-        $scrollTop = 0,    //页面相对高度
+    var $page = 0,          // 当前页数
+        $pagenum = 0,       // 总页数
+        $scroll = 1,        // 开启自动滚动
+        $running = 0,       // 是否有动画进行中
+        $scrollTop = 0,     // 页面相对高度
         $pages = {};
 
+    // 初始化
     var init = function () {
+        // 获取hash值作为锚点
         $page = isNaN(location.hash.slice(1)) ? 0 : location.hash.slice(1) * 1 ;
         $pagenum = $('.nav-li').length;
         $page = $page >= $pagenum ? 0 : $page;
@@ -147,6 +149,16 @@ var fade = (function () {
         }, 5000);
     };
 
+    return {
+        init: init
+    };
+})(window);
+
+//弹窗
+var modal = (function () {
+    var init = function () {
+
+    };
     return {
         init: init
     };
