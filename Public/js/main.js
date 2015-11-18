@@ -157,8 +157,37 @@ var fade = (function () {
 //弹窗
 var modal = (function () {
     var init = function () {
+        $('.modal-btn').on('click', function () {
+            try {
+                //$($(this).attr('modal-target')).fadeIn();
+                modalIn($($(this).attr('modal-target')).find('.layer'));
+            } catch (e) {
+                console.log(e.name + ':' + e.message);
+            }
+        });
+        $('.layer-close').on('click', function () {
+            modalOut($(this).parents('.layer'));
+        });
+    };
+
+    var modalIn = function (obj) {
+        obj.parent().css('display', 'block');
+        obj.animate({
+            top: 0,
+            opacity: 0.9
+        }, 1000, 'swing');
+    };
+
+    var modalOut = function (obj) {
+        obj.animate({
+            top: '-100%',
+            opacity: 0
+        }, 1000, 'swing', function () {
+            obj.parent().css('display', 'none');
+        });
 
     };
+
     return {
         init: init
     };
@@ -168,4 +197,5 @@ $(window).load(function () {
     scrollPage.init();
     toTop.init();
     fade.init($bgs);
+    modal.init();
 });
