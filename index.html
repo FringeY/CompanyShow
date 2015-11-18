@@ -14,6 +14,7 @@
         var $bgs = ['Public/img/bg1.png', 'Public/img/bg2.jpg', 'Public/img/bg3.jpg'],
                 imgs = [], imgLoad = 0;
         $.each($bgs, function (i, ele) {
+            console.log(1);
             imgs[i] = new Image();
             imgs[i].src = ele;
             imgs[i].load = function () {
