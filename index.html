@@ -10,24 +10,34 @@
     <script src="Public/js/jquery-1.11.3.js"></script>
     <script src="Public/js/jquery.mousewheel.min.js"></script>
     <script src="Public/js/main.js"></script>
+    <script>
+        var $bgs = ['Public/img/bg1.png', 'Public/img/bg2.jpg', 'Public/img/bg3.jpg'],
+                imgs = [];
+        $.each($bgs, function (i, ele) {
+            imgs[i] = new Image();
+            imgs[i].src = ele;
+        });
+    </script>
 </head>
 <body>
-    <div class="loader">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+    <div class="load-back">
+        <div class="loader">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </div>
     <ul class="nav">
         <img src="Public/img/logo.png" alt="" class="logo-nav">
@@ -232,8 +242,5 @@
     <div class="back">
         <img class="bg" src="Public/img/bg1.png" alt="">
     </div>
-    <script>
-        var $bgs = ['Public/img/bg1.png', 'Public/img/bg2.jpg', 'Public/img/bg3.jpg'];
-    </script>
 </body>
 </html>
