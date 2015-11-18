@@ -65,7 +65,7 @@ var scrollPage = (function (window) {
     };
 
     var _hashlisten = function () {
-        window.addEventListener('hashchange', function () {
+        $(window).on('hashchange', function () {
             $page = isNaN(location.hash.slice(1)) ? 0 : location.hash.slice(1) * 1;
             $page = $page >= $pagenum ? 0 : $page;
             $('.active').removeClass('active');
