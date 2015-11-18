@@ -102,7 +102,7 @@ var toTop = (function () {
                 $('.toTop').fadeOut(500, 'swing');
             }
         });
-        window.addEventListener('hashchange', function () {
+        $(window).on('hashchange', function () {
             if (scrollPage.scrollTop() > $(window).height() && $('.toTop').css('display') == 'none') {
                 $('.toTop').fadeIn(500, 'swing');
             } else if (scrollPage.scrollTop() <= $(window).height() && $('.toTop').css('display') == 'block') {
