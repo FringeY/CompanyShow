@@ -11,6 +11,7 @@
     <script src="Public/js/jquery.mousewheel.min.js"></script>
     <script src="Public/js/main.js"></script>
     <script>
+        // 加载图片完显示
         var $bgs = ['Public/img/bg1.png', 'Public/img/bg2.jpg', 'Public/img/bg3.jpg'],
                 imgs = [], imgLoad = 0;
         $.each($bgs, function (i, ele) {
@@ -19,7 +20,7 @@
             imgs[i].onload = function () {
                 imgLoad++;
                 if (imgLoad == $bgs.length) {
-                    $('.load-back').fadeOut(3000, 'swing');
+                    $('.load-back').fadeOut(1000, 'swing');
                 }
             }
         });
@@ -84,7 +85,7 @@
             <div class="row">
                 <div class="wrapper">
                     <div class="item">
-                        <img src="Public/img/bg5.jpg" alt="">
+                        <img src="Public/img/c1.jpg" alt="">
                         <div class="item-info">
                             <h3>跨境资产配置</h3>
                             <p>妥善管理资产，实现财富保值增值与传承</p>
@@ -92,7 +93,7 @@
                         </div>
                     </div>
                     <div class="item">
-                        <img src="Public/img/bg5.jpg" alt="">
+                        <img src="Public/img/c2.jpg" alt="">
                         <div class="item-info">
                             <h3>医疗保障</h3>
                             <p>从容面对各种风险</p>
@@ -100,7 +101,7 @@
                         </div>
                     </div>
                     <div class="item">
-                        <img src="Public/img/bg5.jpg" alt="">
+                        <img src="Public/img/c3.jpg" alt="">
                         <div class="item-info">
                             <h3>教育规划</h3>
                             <p>为子女接受良好教育未雨绸缪</p>
@@ -108,7 +109,7 @@
                         </div>
                     </div>
                     <div class="item">
-                        <img src="Public/img/bg5.jpg" alt="">
+                        <img src="Public/img/c4.jpg" alt="">
                         <div class="item-info">
                             <h3>固定资产</h3>
                             <p>全面的金融计划为您稳健护航</p>
@@ -116,7 +117,7 @@
                         </div>
                     </div>
                     <div class="item">
-                        <img src="Public/img/bg5.jpg" alt="">
+                        <img src="Public/img/c5.jpg" alt="">
                         <div class="item-info">
                             <h3>咨询服务</h3>
                             <p>身虽未动心已远行</p>
