@@ -174,7 +174,7 @@ var modal = (function () {
         obj.parent().css('display', 'block');
         obj.animate({
             top: 0,
-            opacity: 0.9
+            opacity: 1
         }, 1000, 'swing');
     };
 
