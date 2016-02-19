@@ -28,7 +28,8 @@ var url = {
     },
     lib: {
         css: 'lib/css/',
-        js: 'lib/js/'
+        js: 'lib/js/',
+        img: 'lib/img/'
     },
     build: {
         css: 'Public/css/',
@@ -71,6 +72,20 @@ gulp.task('lib-js', function () {
        .pipe(reload({stream: true}));
 });
 
+gulp.task('lib-img', function () {
+    gulp.src(url.lib.img + '*.*')
+        .pipe(gulp.dest(url.build.img))
+        .pipe(notify({message: 'img-lib task complete'}))
+        .pipe(reload({stream: true}));
+});
+
+gulp.task('lib-css', function () {
+    gulp.src(url.lib.css + '*.*')
+        .pipe(gulp.dest(url.build.css))
+        .pipe(notify({message: 'css-lib task complete'}))
+        .pipe(reload({stream: true}));
+});
+
 gulp.task('script', function () {
     gulp.src(url.dev.js + '*.js')
         .pipe(plumber())
@@ -91,7 +106,7 @@ gulp.task('img', function () {
 });
 
 gulp.task('default', ['clean'], function () {
-    gulp.run(['less', 'lib-js', 'script', 'img', 'font', 'watch', 'browser-sync']);
+    gulp.run(['less', 'lib-js', 'lib-img', 'lib-css', 'script', 'img', 'font', 'watch', 'browser-sync']);
 });
 
 gulp.task('clean', function () {
@@ -115,6 +130,8 @@ gulp.task('watch', function () {
     gulp.watch(url.watch.font, ['font']);
     gulp.watch(url.watch.js, ['script']);
     gulp.watch(url.watch.libjs, ['lib-js']);
+    gulp.watch(url.watch.libimg, ['lib-img']);
+    gulp.watch(url.watch.libcss, ['lib-css']);
     gulp.watch("**/*.html").on('change', reload);
 });
 
