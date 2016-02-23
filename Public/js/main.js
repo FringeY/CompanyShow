@@ -135,8 +135,8 @@ var fade = (function () {
 
     var _fadeIn = function () {
         $('.back').append('<img class="shadow" style="display:none;width:100%;height:100%;" src="' + $bgs[$bg] + '">');
-        $('.back .bg').fadeOut(1500, 'swing');
-        $('.back .shadow').fadeIn(3000, 'swing', function () {
+        $('.back .bg').fadeOut(1800, 'swing');
+        $('.back .shadow').fadeIn(3500, 'swing', function () {
             $('.back .bg').attr('src', $bgs[$bg]);
             $('.back .bg').css('display', 'block');
             $('.back .shadow').remove();
@@ -149,7 +149,7 @@ var fade = (function () {
             $bg = $bg++ >= $bgnum - 1 ? 0 : $bg;
             _fadeIn();
             clearTimeout($timer);
-        }, 10000);
+        }, 12000);
     };
 
     return {
