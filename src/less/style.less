@@ -26,11 +26,11 @@ html, body {
 }
 
 @font-face {font-family: 'iconfont';
-  src: url('../font/iconfont.eot'); /* IE9*/
-  src: url('../font/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('../font/iconfont.woff') format('woff'), /* chrome、firefox */
-  url('../font/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-  url('../font/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('../fonts/iconfont.eot'); /* IE9*/
+  src: url('../fonts/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../fonts/iconfont.woff') format('woff'), /* chrome、firefox */
+  url('../fonts/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('../fonts/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont{
@@ -129,6 +129,7 @@ html, body {
         }
         .item-info {
           width: 100%;
+          text-align: center;
           h3 {
             font-size: 20px;
             font-weight: lighter;
@@ -136,6 +137,7 @@ html, body {
             margin: 20px 0 10px 0;
           }
           p {
+            text-align: left;
             color: #fff;
             line-height: 1.8em;
             margin-bottom: 20px;
@@ -198,7 +200,7 @@ html, body {
           h3 {
             font-size: 20px;
             line-height: 1.1em;
-            padding: 20px 0;
+            padding-bottom: 10px;
             color: #fff;
             font-weight: lighter;
             text-align: left;
@@ -207,6 +209,30 @@ html, body {
         .btn-more {
           float: left;
           margin: 15px;
+        }
+      }
+      .row-title {
+        width: 45%;
+        margin: 0 15px;
+        font-size: 20px;
+        font-weight: 200;
+        line-height: 1.8em;
+        border-bottom: 1px solid #fff;
+        color: #fff;
+      }
+      .row-articles {
+        a {
+          float: left;
+          box-sizing: border-box;
+          width: 50%;
+          padding: 10px 15px;
+          font-weight: 200;
+          line-height: 1.6em;
+          color: #fff;
+          cursor: pointer;
+          small {
+            float: right;
+          }
         }
       }
       .row-half {
@@ -263,6 +289,10 @@ html, body {
         }
         .btn-more {
           float: right;
+          background-color: transparent;
+          &:hover {
+            background-color: #fff;
+          }
         }
       }
       .form-right {
@@ -285,15 +315,12 @@ html, body {
               margin-right: 10px;
             }
           }
-          li:nth-child(even) .iconfont {
-            font-size: 18px;
-          }
         }
       }
     }
     .btn-more {
       display: inline-block;
-      padding: 6px 12px;
+      padding: 5px 12px;
       font-size: 14px;
       line-height: 20px;
       border: 2px solid #c9b787;
@@ -326,6 +353,9 @@ html, body {
     opacity: 0.8;
     text-shadow: 1px 1px 3px #333;
     cursor: pointer;
+    &:hover {
+      text-shadow: 0 0 5px #fff;
+    }
   }
   .logo-con {
     .words {

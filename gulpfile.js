@@ -22,7 +22,7 @@ var url = {
     dev: {
         less: 'src/less/',
         css: 'src/css/',
-        font: 'src/font/',
+        fonts: 'src/fonts/',
         img: 'src/img/',
         js: 'src/js/'
     },
@@ -33,14 +33,14 @@ var url = {
     },
     build: {
         css: 'Public/css/',
-        font: 'Public/font/',
+        fonts: 'Public/fonts/',
         img: 'Public/img/',
         js: 'Public/js/'
     },
     watch: {
         less: 'src/less/*.less',
         css: 'src/css/*.css',
-        font: 'src/font/*.*',
+        fonts: 'src/fonts/*.*',
         img: 'src/img/*.*',
         js: 'src/js/*.js',
         libjs: 'lib/js/*.js'
@@ -58,10 +58,10 @@ gulp.task('less', function () {
         .pipe(reload({stream: true}));
 });
 
-gulp.task('font', function () {
-    gulp.src(url.dev.font + '*.*')
-        .pipe(gulp.dest(url.build.font))
-        .pipe(notify({message: 'font task complete'}))
+gulp.task('fonts', function () {
+    gulp.src(url.dev.fonts + '*.*')
+        .pipe(gulp.dest(url.build.fonts))
+        .pipe(notify({message: 'fonts task complete'}))
         .pipe(reload({stream: true}));
 });
 
@@ -106,11 +106,11 @@ gulp.task('img', function () {
 });
 
 gulp.task('default', ['clean'], function () {
-    gulp.run(['less', 'lib-js', 'lib-img', 'lib-css', 'script', 'img', 'font', 'watch', 'browser-sync']);
+    gulp.run(['less', 'lib-js', 'lib-img', 'lib-css', 'script', 'img', 'fonts', 'watch', 'browser-sync']);
 });
 
 gulp.task('clean', function () {
-   gulp.src([url.build.css + '*.*', url.build.js + '*.*', url.build.img + '*.*', url.build.font + '*.*'], {read: false})
+   gulp.src([url.build.css + '*.*', url.build.js + '*.*', url.build.img + '*.*', url.build.fonts + '*.*'], {read: false})
        .pipe(clean())
        .pipe(notify({message: 'clean task complete'}));
 });
@@ -127,7 +127,7 @@ gulp.task('browser-sync', function() {
 gulp.task('watch', function () {
     gulp.watch(url.watch.less, ['less']);
     gulp.watch(url.watch.img, ['img']);
-    gulp.watch(url.watch.font, ['font']);
+    gulp.watch(url.watch.fonts, ['fonts']);
     gulp.watch(url.watch.js, ['script']);
     gulp.watch(url.watch.libjs, ['lib-js']);
     gulp.watch(url.watch.libimg, ['lib-img']);

@@ -5,4 +5,8 @@
         public function index () {
             $this -> display();
         }
+
+        public function changePwd () {
+
+        }
     }

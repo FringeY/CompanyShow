@@ -6,4 +6,4 @@ H+3.2/
 Application/Runtime/*
 .DS_Store
 .idea
-config.php
+Application/Home/Conf/config.php

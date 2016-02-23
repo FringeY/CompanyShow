@@ -1,3 +1,6 @@
+/**
+ * Created by yaorui on 16/2/23.
+ */
 // 页面滚动
 var scrollPage = (function (window) {
     var $page = 0,          // 当前页数
@@ -86,7 +89,7 @@ var scrollPage = (function (window) {
 var toTop = (function () {
     var init = function () {
         $('.toTop').on('click', function () {
-           _top();
+            _top();
         });
         _display();
         if (scrollPage.scrollTop() > $(window).height() && $('.toTop').css('display') == 'none') {
@@ -146,7 +149,7 @@ var fade = (function () {
             $bg = $bg++ >= $bgnum - 1 ? 0 : $bg;
             _fadeIn();
             clearTimeout($timer);
-        }, 5000);
+        }, 10000);
     };
 
     return {
