@@ -65,7 +65,7 @@
     </ul>
     <div class="content">
         <div class="block logo-con">
-            <div class="words">创造与传承，源自泓盛</div>
+            <div class="words">{$info.title}</div>
         </div>
         <div class="block">
             <h1>公司背景</h1>
@@ -210,10 +210,10 @@
                 <div class="form-right">
                     <h3>联络方式</h3>
                     <ul>
-                        <li><span class="iconfont" style="font-size: 19px;">&#xe606;</span>400-023-8873</li>
-                        <li><span class="iconfont" style="margin-left: 1px;">&#xe62a;</span> hshq@wholescene.cn</li>
-                        <li><span class="iconfont" style="font-size: 18px;">&#xe622;</span>泓盛环球财富策划中心（重庆）：重庆市渝中区瑞天路56号企业天地4号楼17层</li>
-                        <li><span class="iconfont" style="font-size: 18px;">&#xe622;</span>泓盛环球集团有限公司（香港）：香港九龙新蒲港大有街2号旺景工业大厦6楼</li>
+                        <li><span class="iconfont" style="font-size: 19px;">&#xe606;</span>{$info.phone}</li>
+                        <li><span class="iconfont" style="margin-left: 1px;">&#xe62a;</span>{$info.email}</li>
+                        <li><span class="iconfont" style="font-size: 18px;">&#xe622;</span>{$info.address1}</li>
+                        <li><span class="iconfont" style="font-size: 18px;">&#xe622;</span>{$info.address2g}</li>
                     </ul>
                     <br>
                     <h3>微信二维码</h3>
@@ -354,7 +354,7 @@
             <div class="layer">
                 <h1 class="layer-title">{$vo.title}<i class="layer-close iconfont">&#xe628;</i></h1>
                 <div class="con">
-                    <img src="__PUBLIC__/img/wa1.jpg" alt="">
+                    <img src="__PUBLIC__/img/{$vo.imgurl}" alt="">
                     <br><br>
                     <p>{$vo.content}</p>
                 </div>

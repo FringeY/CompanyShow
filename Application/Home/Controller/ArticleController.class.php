@@ -108,8 +108,6 @@
                     'imgurl' => $info['savepath'].$info['savename'],
                     'date' => date('Y-m-d')
                 );
-                dump($article);
-                dump($data);
                 $Article->where($article)->save($data);
                 $this->success('修改成功');
             }
