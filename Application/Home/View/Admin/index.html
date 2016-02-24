@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <title>官网后台</title>
     <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css">
+    <style>
+        .navbar {
+            border-radius: 0;
+        }
+    </style>
 </head>
 <body>
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-inverse">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -21,14 +26,14 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="{:U(Article/index)}">代表性文案<span class="sr-only">(current)</span></a></li>
-                <li><a href="#">资源</a></li>
+                <li class="active"><a href="{:U(Article/index)}">网站信息<span class="sr-only">(current)</span></a></li>
+                <li class=""><a href="{:U(Article/index)}">代表性文案<span class="sr-only">(current)</span></a></li>
                 <li class="dropdown pull-right">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">管理员账号<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a data-toggle="modal" data-target="#changepwd">修改密码</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">退出</a></li>
+                        <li><a href="{:U('Login/logout')}">退出</a></li>
                     </ul>
                 </li>
             </ul>
@@ -36,46 +41,33 @@
     </div>
 </nav>
 <div class="container">
-    <div class="row col-md-3">
-        <ul class="list-group">
-            <volist name="articles" id="vo">
-                <a class="list-group-item" href="{:U('Article/article')}?id={$vo.id}">{$vo.title}<span class="badge">查看</span></a>
-            </volist>
-        </ul>
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">添加文案</button>
-    </div>
-</div>
-<!--Modal-->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">添加文案</h4>
+    <div class="row col-md-12">
+        <form action="{:U('Admin/reviseInfo')}" method="post">
+            <div class="form-group">
+                <label for="title">网站标题</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="" disabled="disabled" value="{$info['title']}">
             </div>
-            <form action="{:U('Article/addArticle')}" enctype="multipart/form-data" method="post">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="articlename">文案标题</label>
-                        <input type="text" class="form-control" id="articlename" name="title" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <label>文案图片 <small>图片不得超过2MB</small></label>
-                        <div>
-                            <input type="file" name="pic" title="添加图片">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="articlecontent">文案内容</label>
-                        <textarea name="content" class="form-control" id="articlecontent" cols="30" rows="10"></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="submit" class="btn btn-primary">确认提交</button>
-                </div>
-            </form>
-        </div>
+            <div class="form-group">
+                <label for="phone">电话</label>
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="" disabled="disabled" value="{$info['phone']}">
+            </div>
+            <div class="form-group">
+                <label for="email">邮箱</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="" disabled="disabled" value="{$info['email']}">
+            </div>
+            <div class="form-group">
+                <label for="address1">地址1</label>
+                <input type="text" class="form-control" id="address1" name="address1" placeholder="" disabled="disabled" value="{$info['address1']}">
+            </div>
+            <div class="form-group">
+                <label for="address2">地址2</label>
+                <input type="text" class="form-control" id="address2" name="address2" placeholder="" disabled="disabled" value="{$info['address2']}">
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-warning revise-info">修改信息</button>
+                <button type="submit" class="btn btn-primary confirm" style="display: none">确认修改</button>
+            </div>
+        </form>
     </div>
 </div>
 <!--changepwd-->
@@ -115,8 +107,8 @@
     $('.change-pic').eq(0).css('display', 'none');
     $('.add-pic').eq(0).css('display', 'none');
 
-    //修改文案
-    $('.revise-article').on('click', function () {
+    //修改信息
+    $('.revise-info').on('click', function () {
         //解除input,textarea输入限制
         $(this).parents('form').eq(0).find('[disabled=disabled]').each(function (i, ele) {
             $(ele).removeAttr('disabled');
@@ -125,31 +117,6 @@
         $(this).css('display', 'none');
         //显示确认按钮
         $('.confirm').css('display', 'inline-block');
-        //显示图片按钮
-        if ($('.is-pic').data('type')) {
-            $('.pic').css('display', 'none');
-            $('.change-pic').eq(0).css('display', 'inline-block');
-        } else {
-            $('.no-pic').css('display', 'none');
-            $('.add-pic').eq(0).css('display', 'inline-block');
-        }
-    });
-
-    //删除文案
-    $('.del-article').on('click', function (e) {
-        e.preventDefault();
-        $.ajax({
-            type: 'post',
-            url: '',
-            data: {},
-            success: function () {
-                alert('删除成功!');
-                location.reload();
-            },
-            error: function () {
-                alert('删除失败!');
-            }
-        })
     });
 
     //修改密码

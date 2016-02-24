@@ -4,10 +4,11 @@ use Think\Controller;
 class BaseController extends Controller {
     public function _initialize() {
         $id = session('user.id');
-        if (!id) {
+        $name = session('user.name');
+        if (!id && !name) {
             $this->error('请先登录', U('Login/index'));
         } else {
-            $this->assign('username', $username);
+            $this->assign('name', $name);
             $this->assign('id', $id);
         }
     }

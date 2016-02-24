@@ -9,9 +9,9 @@
     //登录
     public function login () {
         if (IS_POST){
-            $id = I('post.username');
+            $name = I('post.name');
             $password = I('post.password');
-            $data = $this->verify($id, $password);
+            $data = $this->verify($name, $password);
         }else{
             $this->error('非法请求');
         }
@@ -25,20 +25,18 @@
     }
 
     //验证
-    private function verify($id, $password) {
+    private function verify($name, $password) {
         $where = array(
-            'id' => $id,
+            'name' => $name,
             'password' => $password,
         );
 
         $data = M('user')->where($where)->find();
-        $name = array(
-            'id' => $id
-        );
 
         if ($data) {
             session('user.id', $data['id']);
-            $this->success('登录成功', U('Index/index'));
+            session('user.name', $data['name']);
+            $this->success('登录成功', U('Admin/index'));
         } else {
             $this->error('用户名或密码错误');
         }

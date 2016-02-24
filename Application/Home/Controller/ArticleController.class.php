@@ -6,7 +6,7 @@
             $Article = M('articles');
             $articles = $Article -> select();
             $this -> assign('articles', $articles);
-            $this -> display('Admin:index');
+            $this -> display('Admin:articles');
         }
 
         public function article () {

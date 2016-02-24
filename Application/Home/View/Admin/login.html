@@ -10,9 +10,9 @@
     <div class="container">
         <h1>官网后台登录</h1>
 
-        <form class="form" method="post" action="">
-            <input type="text" name="id" placeholder="账号">
-            <input type="password" name="pwd" placeholder="密码">
+        <form class="form" method="post" action="{:U('Login/login')}">
+            <input type="text" name="name" placeholder="账号">
+            <input type="password" name="password" placeholder="密码">
             <button type="submit" id="login-button">登录</button>
         </form>
     </div>
