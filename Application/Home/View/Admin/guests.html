@@ -26,9 +26,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="{:U('Admin/index')}">网站信息<span class="sr-only">(current)</span></a></li>
+                <li class=""><a href="{:U(Admin/index)}">网站信息<span class="sr-only">(current)</span></a></li>
                 <li class=""><a href="{:U('Article/index')}">代表性文案<span class="sr-only">(current)</span></a></li>
-                <li class=""><a href="{:U('Admin/guest')}">访客留言<span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="{:U('Admin/guest')}">访客留言<span class="sr-only">(current)</span></a></li>
                 <li class="dropdown pull-right">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">管理员账号<span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -43,32 +43,37 @@
 </nav>
 <div class="container">
     <div class="row col-md-12">
-        <form action="{:U('Admin/reviseInfo')}" method="post">
-            <div class="form-group">
-                <label for="title">网站标题</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="" disabled="disabled" value="{$info['title']}">
-            </div>
-            <div class="form-group">
-                <label for="phone">电话</label>
-                <input type="text" class="form-control" id="phone" name="phone" placeholder="" disabled="disabled" value="{$info['phone']}">
-            </div>
-            <div class="form-group">
-                <label for="email">邮箱</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="" disabled="disabled" value="{$info['email']}">
-            </div>
-            <div class="form-group">
-                <label for="address1">地址1</label>
-                <input type="text" class="form-control" id="address1" name="address1" placeholder="" disabled="disabled" value="{$info['address1']}">
-            </div>
-            <div class="form-group">
-                <label for="address2">地址2</label>
-                <input type="text" class="form-control" id="address2" name="address2" placeholder="" disabled="disabled" value="{$info['address2']}">
-            </div>
-            <div class="form-group">
-                <button type="button" class="btn btn-warning revise-info">修改信息</button>
-                <button type="submit" class="btn btn-primary confirm" style="display: none">确认修改</button>
-            </div>
-        </form>
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">访客留言</div>
+
+            <!-- Table -->
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>姓名</th>
+                    <th>电话</th>
+                    <th>email</th>
+                    <th>留言</th>
+                </tr>
+                </thead>
+                <tbody>
+                <volist name="guests" id="vo">
+                    <tr>
+                        <th scope="row">{$vo.id}</th>
+                        <td>{$vo.name}</td>
+                        <td>{$vo.phone}</td>
+                        <td>{$vo.email}</td>
+                        <td><button type="button" class="btn btn-default btn-xs" data-container="body" data-toggle="popover" data-placement="bottom" data-content="{$vo.message}">
+                            查看留言
+                        </button>
+                        </td>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 <!--changepwd-->
@@ -128,6 +133,10 @@
             return false;
         }
     });
+
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    })
 </script>
 </body>
 </html>

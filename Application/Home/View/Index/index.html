@@ -187,25 +187,25 @@
         </div>
         <div class="block">
             <h1>联络我们</h1>
-            <form action="{:U('Admin/contact')}" class="row form">
+            <form action="{:U('Admin/guestpost')}" class="row form" method="post">
                 <div class="form-left">
                     <div class="input-group">
                         <label>姓名</label>
-                        <input type="text" placeholder="Name">
+                        <input type="text" name="name" placeholder="Name">
                     </div>
                     <div class="input-group">
                         <label>联络电话</label>
-                        <input type="tel" placeholder="Phone Number">
+                        <input type="tel" name="phone" placeholder="Phone Number">
                     </div>
                     <div class="input-group">
                         <label>电子邮件</label>
-                        <input type="email" placeholder="Email Address">
+                        <input type="email" name="email" placeholder="Email Address">
                     </div>
                     <div class="input-group">
                         <label>留言</label>
-                        <textarea name="" id="" rows="5" placeholder="Message"></textarea>
+                        <textarea name="message" id="" rows="5" placeholder="Message"></textarea>
                     </div>
-                    <button type="submit" class="btn-more">提交</button>
+                    <button type="submit" class="btn-more guestpost">提交</button>
                 </div>
                 <div class="form-right">
                     <h3>联络方式</h3>
@@ -361,5 +361,27 @@
             </div>
         </div>
     </volist>
+    <script>
+        $('.guestpost').on('click', function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: $('form').attr('action'),
+                type: 'post',
+                data: {
+                    name: $('input[name=name]').val(),
+                    phone: $('input[name=phone]').val(),
+                    email: $('input[name=email]').val(),
+                    message: $('input[name=message]').val()
+                },
+                success: function () {
+                    alert('提交成功!');
+                },
+                error: function () {
+                    alert('提交失败!');
+                }
+            });
+            return false;
+        });
+    </script>
 </body>
 </html>

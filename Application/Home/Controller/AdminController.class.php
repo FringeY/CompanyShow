@@ -41,4 +41,23 @@
             $User -> where($user) -> save($pwd);
             $this -> success('修改成功');
         }
+
+        public function guest () {
+            $Guest = M('guest');
+            $guests = $Guest -> order('id desc') -> select();
+            $this -> assign('guests', $guests);
+            $this -> display('Admin:guests');
+        }
+
+        public function guestpost () {
+            $Guest = M('guest');
+            $data = array (
+                'name' => I('post.name'),
+                'phone' => I('post.phone'),
+                'email' => I('post.email'),
+                'message' => I('post.message')
+            );
+            $Guest -> add($data);
+            $this -> ajaxReturn('');
+        }
     }
