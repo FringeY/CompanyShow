@@ -368,10 +368,10 @@
                 url: $('form').attr('action'),
                 type: 'post',
                 data: {
-                    name: $('input[name=name]').val(),
-                    phone: $('input[name=phone]').val(),
-                    email: $('input[name=email]').val(),
-                    message: $('input[name=message]').val()
+                    name: $('input[name=name]').val() ? $('input[name=name]').val() : '空',
+                    phone: $('input[name=phone]').val() ? $('input[name=phone]').val() : '空',
+                    email: $('input[name=email]').val() ? $('input[name=email]').val() : '空',
+                    message: $('textarea[name=message]').val() ? $('textarea[name=message]').val() : '空'
                 },
                 success: function () {
                     alert('提交成功!');
