@@ -47,7 +47,7 @@
 </nav>
 <div class="container">
     <div class="row col-md-12">
-        <form action="{:U('Admin/reviseInfo')}" method="post">
+        <form class="col-md-12" action="{:U('Admin/reviseInfo')}" method="post" style="margin-bottom: 40px;">
             <div class="form-group">
                 <label for="title">网站标题</label>
                 <input type="text" class="form-control" id="title" name="title" placeholder="" disabled="disabled" value="{$info['title']}">
@@ -71,6 +71,63 @@
             <div class="form-group">
                 <button type="button" class="btn btn-warning revise-info">修改信息</button>
                 <button type="submit" class="btn btn-primary confirm" style="display: none">确认修改</button>
+            </div>
+        </form>
+        <form class="col-md-4" action="{:U('Admin/changeBackground')}" enctype="multipart/form-data" method="post">
+            <div style="display: none;">
+                <input type="text" name="id" value="0">
+            </div>
+            <div class="form-group" style="overflow: hidden;">
+                <label class="is-pic">背景图1 <small>图片大小小于2MB</small>
+                    <button type="button" class="btn btn-xs btn-warning revise-bg" style="margin-left: 10px;">修改背景</button>
+                    <button type="submit" class="btn btn-xs btn-primary confirm" style="display: none">确认修改</button>
+                </label>
+                <div>
+                    <div class="col-md-10 pic" style="margin-left: -15px;">
+                        <a class="thumbnail">
+                            <img src="__PUBLIC__/img/{$bg[0]['imgurl']}" alt="...">
+                        </a>
+                    </div>
+                    <input type="file" id="articlepic" name="changebg" class="change-pic" title="更改图片">
+                </div>
+            </div>
+        </form>
+        <form class="col-md-4" action="{:U('Admin/changeBackground')}" enctype="multipart/form-data" method="post">
+            <div style="display: none;">
+                <input type="text" name="id" value="1">
+            </div>
+            <div class="form-group" style="overflow: hidden;">
+                <label class="is-pic">背景图2 <small>图片大小小于2MB</small>
+                    <button type="button" class="btn btn-xs btn-warning revise-bg" style="margin-left: 10px;">修改背景</button>
+                    <button type="submit" class="btn btn-xs btn-primary confirm" style="display: none">确认修改</button>
+                </label>
+                <div>
+                    <div class="col-md-10 pic" style="margin-left: -15px;">
+                        <a class="thumbnail">
+                            <img src="__PUBLIC__/img/{$bg[1]['imgurl']}" alt="...">
+                        </a>
+                    </div>
+                    <input type="file" id="articlepic" name="changebg" class="change-pic" title="更改图片">
+                </div>
+            </div>
+        </form>
+        <form class="col-md-4" action="{:U('Admin/changeBackground')}" enctype="multipart/form-data" method="post">
+            <div style="display: none;">
+                <input type="text" name="id" value="2">
+            </div>
+            <div class="form-group" style="overflow: hidden;">
+                <label class="is-pic">背景图3 <small>图片大小小于2MB</small>
+                    <button type="button" class="btn btn-xs btn-warning revise-bg" style="margin-left: 10px;">修改背景</button>
+                    <button type="submit" class="btn btn-xs btn-primary confirm" style="display: none">确认修改</button>
+                </label>
+                <div>
+                    <div class="col-md-10 pic" style="margin-left: -15px;">
+                        <a class="thumbnail">
+                            <img src="__PUBLIC__/img/{$bg[2]['imgurl']}" alt="...">
+                        </a>
+                    </div>
+                    <input type="file" id="articlepic" name="changebg" class="change-pic" title="更改图片">
+                </div>
             </div>
         </form>
     </div>
@@ -110,18 +167,33 @@
     $('input[type=file]').bootstrapFileInput();
     $('.file-inputs').bootstrapFileInput();
     $('.change-pic').eq(0).css('display', 'none');
-    $('.add-pic').eq(0).css('display', 'none');
+    $('.change-pic').eq(2).css('display', 'none');
+    $('.change-pic').eq(4).css('display', 'none');
 
     //修改信息
     $('.revise-info').on('click', function () {
         //解除input,textarea输入限制
-        $(this).parents('form').eq(0).find('[disabled=disabled]').each(function (i, ele) {
+        $(this).parents('form').find('[disabled=disabled]').each(function (i, ele) {
             $(ele).removeAttr('disabled');
         });
         //隐藏修改按钮
         $(this).css('display', 'none');
         //显示确认按钮
-        $('.confirm').css('display', 'inline-block');
+        $(this).parents('form').find('.confirm').css('display', 'inline-block');
+    });
+
+    //修改背景图
+    $('.revise-bg').on('click', function () {
+        //解除input,textarea输入限制
+        $(this).parents('form').find('[disabled=disabled]').each(function (i, ele) {
+            $(ele).removeAttr('disabled');
+        });
+        //隐藏修改按钮
+        $(this).css('display', 'none');
+        //显示确认按钮
+        $(this).parents('form').find('.confirm').css('display', 'inline-block');
+        $(this).parents('form').find('.pic').css('display', 'none');
+        $(this).parents('form').find('.change-pic').eq(0).css('display', 'inline-block');
     });
 
     //修改密码

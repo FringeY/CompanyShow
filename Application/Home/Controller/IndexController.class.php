@@ -9,6 +9,7 @@
             $Service = M('service');
             $Team = M('team');
             $Finance = M('finance');
+            $Bg = M('background');
 
             $info = $Info -> find();
             $intro = $Intro -> find();
@@ -16,6 +17,7 @@
             $articles = $Article -> select();
             $services = $Service -> select();
             $members = $Team -> select();
+            $bg = $Bg -> select();
 
             $pattern = array("\r\n", "\r", "\n");
             $intro['content'] = str_replace($pattern, '<br>', $intro['content']);
@@ -46,6 +48,7 @@
             $this -> assign('services', $services);
             $this -> assign('members', $members);
             $this -> assign('finance', $finance);
+            $this -> assign('bg', $bg);
             $this -> display();
         }
     }

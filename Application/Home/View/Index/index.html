@@ -12,7 +12,7 @@
     <script src="__PUBLIC__/js/main.js"></script>
     <script>
         // 加载图片完显示
-        var $bgs = ['__PUBLIC__/img/bg1.png', '__PUBLIC__/img/bg2.jpg', '__PUBLIC__/img/bg3.jpg'],
+        var $bgs = ['__PUBLIC__/img/{$bg[0]["imgurl"]}', '__PUBLIC__/img/{$bg[1]["imgurl"]}', '__PUBLIC__/img/{$bg[2]["imgurl"]}'],
                 imgs = [], imgLoad = 0;
         $.each($bgs, function (i, ele) {
             imgs[i] = new Image();

@@ -4,8 +4,11 @@
     class AdminController extends BaseController {
         public function index () {
             $Info = M('information');
+            $Bg = M('background');
             $info = $Info -> find();
+            $bg = $Bg -> select();
             $this -> assign('info', $info);
+            $this -> assign('bg', $bg);
             $this -> display();
         }
 
@@ -26,8 +29,35 @@
             $this->success('修改成功');
         }
 
-        public function reviseBackground () {
+        public function changeBackground () {
             $Bg = M('background');
+            $bg = array (
+                'id' => I('post.id')
+            );
+
+            $upload = new \Think\Upload();
+            $upload->maxSize = '3145728';
+            $upload->exts = array('jpg','JPG','PNG', 'png','JPEG' ,'jpeg');
+            $upload->rootPath  =  "./Public/img/";
+            $upload->savePath = 'bg/';
+            $upload->saveName = time().'_'.mt_rand();
+            // 上传文件
+            $info   =   $upload->uploadOne($_FILES['changebg']);
+
+            // 上传错误提示错误信息
+            if (!$info) {
+                $this -> error($upload -> getError());
+            } else {// 上传成功
+                $imgurl = './Public/img/'.$Bg -> where($bg) -> getField('imgurl');
+                if (file_exists($imgurl)) {
+                    unlink($imgurl);
+                }
+                $data = array (
+                    'imgurl' => $info['savepath'].$info['savename']
+                );
+                $Bg -> where($bg) -> save($data);
+                $this->success('修改成功');
+            }
         }
 
         public function changePwd () {
