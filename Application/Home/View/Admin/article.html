@@ -64,7 +64,7 @@
                 <input type="text" class="form-control" id="articlename" name="title" placeholder="" disabled="disabled" value="{$info['article']['title']}">
             </div>
             <div class="form-group" style="overflow: hidden;">
-                <label class="is-pic" for="articlepic" data-type="{$info['article']['imgurl'] ? 'true' : 'false'}">文案图片</label>
+                <label class="is-pic" for="articlepic" data-type="{$info['article']['imgurl'] ? 'true' : 'false'}">文案图片 <small>图片大小小于2MB</small></label>
                 <div>
                     <span class="label label-default no-pic" style="display: none;">暂无图片</span>
                     <div class="col-md-3 pic" style="margin-left: -15px;">
@@ -103,7 +103,7 @@
                         <input type="text" class="form-control" id="articlename" name="title" placeholder="">
                     </div>
                     <div class="form-group">
-                        <label>文案图片</label>
+                        <label>文案图片 <small>图片大小小于2MB</small></label>
                         <div>
                             <input type="file" name="pic" title="添加图片">
                         </div>
