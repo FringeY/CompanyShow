@@ -41,7 +41,7 @@
 
         public function addArticle () {
             $Article = M('articles');
-            if (!(I('post.title') && I('post.content'))) {
+            if (!(I('post.title') || !I('post.content'))) {
                 $this -> error('标题和内容不得为空');
             }
             $upload = new \Think\Upload();

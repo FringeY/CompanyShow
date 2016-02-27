@@ -71,10 +71,11 @@
             <h1>公司背景</h1>
             <div class="row">
                 <div class="pic">
-                    <img src="__PUBLIC__/img/pic1.jpg" alt="">
+                    <img src="__PUBLIC__/img/{$intro.imgurl}" alt="">
                 </div>
                 <div class="text">
-                    <p class="text-p">泓盛环球是一家来自香港的专业资产管理公司，联合本地龙头控股企业，并结合二者优势，成为重庆首家环球金融投资咨询服务公司，以完善的供应链条和金融分析能力为客户打造一站式的投资窗口。<br>泓盛环球凭借丰富的管理经验与专业的投资市场分析，为客户提供高质量的金融服务。精心挑选来自世界顶级金融机构的优质产品，实现客户投资目标。全方位从客户的角度出发，量身定制适合客户家庭或企业的财富管理方案。
+                    <p class="text-p">
+                        {$intro.brief}
                     </p>
                     <div class="btn-more modal-btn" modal-target="#modal1">继续了解</div>
                 </div>
@@ -84,46 +85,16 @@
             <h1>财富管理</h1>
             <div class="row">
                 <div class="wrapper">
-                    <div class="item">
-                        <img src="__PUBLIC__/img/c1.jpg" alt="">
-                        <div class="item-info">
-                            <h3>跨境资产配置</h3>
-                            <p>妥善管理资产，实现财富保值增值与传承</p>
-                            <div class="btn-more modal-btn" modal-target="#modal2">详情</div>
+                    <volist name="services" id="service">
+                        <div class="item">
+                            <img src="__PUBLIC__/img/{$service.imgurl}" alt="">
+                            <div class="item-info">
+                                <h3>{$service.name}</h3>
+                                <p>{$service.brief}</p>
+                                <div class="btn-more modal-btn" modal-target="#service{$service.id}">详情</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        <img src="__PUBLIC__/img/c2.jpg" alt="">
-                        <div class="item-info">
-                            <h3>医疗保障</h3>
-                            <p>从容面对各种风险</p>
-                            <div class="btn-more modal-btn" modal-target="#modal3">详情</div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <img src="__PUBLIC__/img/c3.jpg" alt="">
-                        <div class="item-info">
-                            <h3>教育规划</h3>
-                            <p>为子女接受良好教育未雨绸缪</p>
-                            <div class="btn-more modal-btn" modal-target="#modal4">详情</div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <img src="__PUBLIC__/img/c4.jpg" alt="">
-                        <div class="item-info">
-                            <h3>固定资产</h3>
-                            <p>全面的金融计划为您稳健护航</p>
-                            <div class="btn-more modal-btn" modal-target="#modal5">详情</div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <img src="__PUBLIC__/img/c5.jpg" alt="">
-                        <div class="item-info">
-                            <h3>咨询服务</h3>
-                            <p>身虽未动心已远行</p>
-                            <div class="btn-more modal-btn" modal-target="#modal6">详情</div>
-                        </div>
-                    </div>
+                    </volist>
                 </div>
             </div>
         </div>
@@ -131,48 +102,31 @@
             <h1>私人财富服务</h1>
             <div class="row">
                 <div class="pic pull-right">
-                    <img src="__PUBLIC__/img/pic2.jpg" alt="">
+                    <img src="__PUBLIC__/img/{$finance.imgurl}" alt="">
                 </div>
                 <div class="text">
                     <p class="text-p">
-                        泓盛环球私人财富服务致力于为全球高净值客户提供资产跨境配置方案及现金流规划，并与业内顶尖私人银行展开长期而密切的合作，以协助合作伙伴为高净值客户提供量身定制之顶级服务与财富管理方案。<br>泓盛环球旗下私人财富顾问皆受过特别培训，恪守最严格的信息安全标准，竭诚保护私人银行客户的机密及相关信息。着眼于长期、健康、双赢的合作关系；泓盛环球私人财富服务成为银行伙伴与高净值客户的独特桥梁，迄今服务遍及全球。
+                        {$finance.brief}
                     </p>
-                    <div class="btn-more pull-right modal-btn" modal-target="#modal11">继续了解</div>
+                    <div class="btn-more pull-right modal-btn" modal-target="#modal7">继续了解</div>
                 </div>
             </div>
         </div>
         <div class="block">
             <h1>团队介绍</h1>
-            <div class="row">
-                <div class="pic" style="width: 16%">
-                    <img src="__PUBLIC__/img/zx.jpg" alt="">
-                </div>
-                <div class="text">
-                    <div class="text-p">
-                        <h3>张潇</h3>
-                        <p>泓盛环球  境外资产管理总经理</p>
-                        <p>毕业于四川外国语大学</p>
-                        <p>目前在读重大EMBA，国际关系（英语）及国际金融双学士学位</p>
-                        <p>国家理财规划师，助理会计师</p>
-                        <p>曾获重庆市科研立项银奖</p>
-                        <p>曾先后实习或入职与花旗银行，普华永道等多家外资机构</p>
-                        <p>作为重庆本地第一批专业环球资产管理师参与筹建李嘉诚先生在渝唯一境外资产管理公司</p>
+            <volist name="members" id="member">
+                <div class="row">
+                    <div class="pic" style="width: {$key == 0 ? '16%' : '25%'}">
+                        <img src="__PUBLIC__/img/{$member.imgurl}" alt="">
+                    </div>
+                    <div class="text">
+                        <div class="text-p">
+                            <h3>{$member.name}</h3>
+                            <p>{$member.content}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="pic">
-                    <img src="__PUBLIC__/img/hz.jpg" alt="">
-                </div>
-                <div class="text">
-                    <div class="text-p">
-                        <h3>团队</h3>
-                        <p>泓盛环球拥有强大专业的投资管理团队，来自于香港李嘉诚先生旗下一家专业的金融资产管理公司—尚乘集团。拥有多年金融行业从业、  投资及经营等方面丰富的经验与优秀的成绩。是重庆唯一一支拥有专业境外管理经验的团队，累计销售额占本地财富管理的60%。
-                        </p>
-                    </div>
-                    <!--<div class="btn-more modal-btn" modal-target="#modal14">观看视频</div>-->
-                </div>
-            </div>
+            </volist>
         </div>
         <div class="block">
             <h1>了解更多</h1>
@@ -256,96 +210,37 @@
             <h1 class="layer-title">公司背景<i class="layer-close iconfont">&#xe628;</i></h1>
             <div class="con">
                 <h2>公司介绍</h2>
-                <p>泓盛环球是一家来自香港的专业资产管理公司，联合本地龙头控股企业，并结合二者优势，成为重庆首家环球金融投资咨询服务公司，以完善的供应链条和金融分析能力为客户打造一站式的投资窗口。</p>
-                <p>泓盛环球凭借丰富的管理经验与专业的投资市场分析，为客户提供高质量的金融服务。精心挑选来自世界顶级金融机构的优质产品，实现客户投资目标。全方位从客户的角度出发，量身定制适合客户家庭或企业的财富管理方案。</p>
-                <p>泓盛环球时刻以客户利益为中心，秉承“服务至高无上”的理念，致力为高净值客户提供广泛及优质的资产管理和投资理财服务。借助遍布全球各大金融中心专业机构服务，泓盛环球矢志在专业技术,产品支持及服务素质上为客户带来最优体验。不仅协助客户妥善管理资产配置方案，同时更全方位贴心照顾客户生活所需，帮助客户更好的融入当地生活
+                <p>
+                    {$intro.content}
                 </p>
-                <h3>主要股东</h3>
-                <q>重庆泓蕴控股有限公司</q>
-                <h3>战略合作伙伴</h3>
-                <p>中国富强金融集团</p>
-                <h3>合作伙伴</h3>
-                <p>零售银行：汇丰银行、渣打银行、花旗银行、澳新银行、永隆银行</p>
-                <p>私人银行：瑞银集团、瑞士信贷、JP Morgan、德意志银行、新加坡银行</p>
-                <p>保险公司：安盛保险、保诚保险、友邦保险、宏利保险、永明保险</p>
-                <p>基金公司：贝莱德集团、黑石集团、施罗德基金、首域投资、富兰克林</p>
-                <h2>集团架构</h2>
             </div>
         </div>
     </div>
-    <div class="modals" id="modal2">
-        <div class="layer">
-            <h1 class="layer-title">跨境资产配置<i class="layer-close iconfont">&#xe628;</i></h1>
-            <div class="con">
-                <p>随着资本国际流动性的日益增强，以及个人和家族财富的不断积累，亚洲高净值人士对于资产的跨境多元化配置愈发青睐，这也和国内投资环境的现状不无关系：</p>
-                <p>征税环境不甚明朗，财富随时可能被新增税种侵蚀；</p>
-                <p>投资币种单一，无法在境内市场实现风险分散或对冲；</p>
-                <p>信托作为财富传承的重要工具，在国内面临有名无实的窘境......</p>
-                <p>成功的跨境投资者需要清楚了解产品特性、风险及自身承受能力，因此选择拥有跨区域投资条件和实力的理财机构对您尤为重要。泓盛环球依香港而辐射全球，拥有全牌照金融资质，并与本地实力财团强强联手，为您提供全球化资产配置服务，包括税务优化、信托设立、投资移民及不同国籍之后代财产集成规划，助您妥善管理资产，实现财富保值增值与传承。</p>
-                <hr>
-                <ul>
-                    <li>投资移民标准</li>
-                    <li>外汇基金管理</li>
-                    <li>家族财富传承</li>
-                </ul>
+    <volist name="services" id="service">
+        <div class="modals" id="service{$service.id}">
+            <div class="layer">
+                <h1 class="layer-title">{$service.name}<i class="layer-close iconfont">&#xe628;</i></h1>
+                <div class="con">
+                    <p>
+                        {$service.content}
+                    </p>
+                    <hr>
+                    <ul>
+                        <volist name="service['kind']" id="kind">
+                            <li>{$kind}</li>
+                        </volist>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="modals" id="modal3">
+    </volist>
+    <div class="modals" id="modal7">
         <div class="layer">
-            <h1 class="layer-title">医疗保障<i class="layer-close iconfont">&#xe628;</i></h1>
+            <h1 class="layer-title">私人财富管理<i class="layer-close iconfont">&#xe628;</i></h1>
             <div class="con">
-                <p>有效的风险管理决定了完备的总体规划，并与投资、税负、遗产和退休计划等相辅相成。针对个人伤病风险管理，泓盛为您提供全面的解决方案，包括海外就医计划、住院医疗和手术费用报销计划、重大疾病收入补偿计划、长期护理计划等。为您实现风险转移或最小化、确保您从容面对各种风险并舒缓您的经济负担。
+                <p>
+                    {$finance.content}
                 </p>
-                <hr>
-                <ul>
-                    <li>家庭医疗计划</li>
-                    <li>定制保险服务</li>
-                    <li>个人健康管理</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="modals" id="modal4">
-        <div class="layer">
-            <h1 class="layer-title">教育规划<i class="layer-close iconfont">&#xe628;</i></h1>
-            <div class="con">
-                <p>成功的父母必然懂得为子女接受良好教育未雨绸缪，提前安排合适的教育储蓄为子女前程保驾护航无疑是明智之举。泓盛环球长于分析热门留学目的地之生活用度，并结合特殊资金安排、年金储蓄等财务手段助您合理规划教育成本，为子女深造铺就坚实基础。
-                </p>
-                <hr>
-                <ul>
-                    <li>留学资金安排</li>
-                    <li>长期分红储蓄</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="modals" id="modal5">
-        <div class="layer">
-            <h1 class="layer-title">固定资产<i class="layer-close iconfont">&#xe628;</i></h1>
-            <div class="con">
-                <p>全面的金融计划为您稳健护航，融入海外生活固定资产亦是必不可少。一处良宅，一亩葡园抑或一艘白帆不仅让您放松疲惫的身体，更令心灵找到新的归宿。看似平常的购置背后凝聚着泓盛环球在多年处理方外诸国律法税赋风土人情所积累的智慧，只为您解除后顾之忧，安心享受当地生活。
-                </p>
-                <hr>
-                <ul>
-                    <li>房产</li>
-                    <li>大宗商品</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="modals" id="modal6">
-        <div class="layer">
-            <h1 class="layer-title">咨询服务<i class="layer-close iconfont">&#xe628;</i></h1>
-            <div class="con">
-                <p>身虽未动心已远行。无论赴境外投资置业或求学移居，林林总总的陌生规则教人不得不谋定而后动。泓盛环球专长海外事务，为您的家庭企业走向全球提供最有价值的建议。
-                </p>
-                <hr>
-                <ul>
-                    <li>境外融资</li>
-                    <li>社会服务</li>
-                    <li>离岸公司</li>
-                </ul>
             </div>
         </div>
     </div>

@@ -27,11 +27,11 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class=""><a href="{:U('Admin/index')}">网站信息<span class="sr-only">(current)</span></a></li>
-                <li class=""><a href="{:U('Admin/intro')}">公司背景<span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="{:U('Admin/intro')}">公司背景<span class="sr-only">(current)</span></a></li>
                 <li class=""><a href="{:U('Admin/finance')}">私人金融服务<span class="sr-only">(current)</span></a></li>
                 <li class=""><a href="{:U('Admin/service')}?id=0">财富管理<span class="sr-only">(current)</span></a></li>
                 <li class=""><a href="{:U('Admin/team')}?id=0">团队管理<span class="sr-only">(current)</span></a></li>
-                <li class="active"><a href="{:U('Article/index')}">代表性文案<span class="sr-only">(current)</span></a></li>
+                <li class=""><a href="{:U('Article/index')}">代表性文案<span class="sr-only">(current)</span></a></li>
                 <li class=""><a href="{:U('Admin/guest')}">访客留言<span class="sr-only">(current)</span></a></li>
                 <li class="dropdown pull-right">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">管理员账号<span class="caret"></span></a>
@@ -46,81 +46,38 @@
     </div>
 </nav>
 <div class="container">
-    <div class="row col-md-3">
-        <ul class="list-group">
-            <volist name="articles" id="vo">
-                <a class="list-group-item {$vo['id'] == $info['id'] ? 'active' : ''}" href="{:U('Article/article')}?id={$vo.id}">{$vo.title}<span class="badge">查看</span></a>
-            </volist>
-        </ul>
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">添加文案</button>
-    </div>
-    <div class="col-md-9">
-        <form action="{:U('Article/reviseArticle')}" enctype="multipart/form-data" method="post">
+    <div class="col-md-12">
+        <form action="{:U('Admin/reviseIntro')}" enctype="multipart/form-data" method="post">
             <div style="display: none;">
                 <input type="text" name="id" value="{$info.id}">
             </div>
             <div class="form-group">
-                <label for="articlename">文案标题</label>
-                <input type="text" class="form-control" id="articlename" name="title" placeholder="" disabled="disabled" value="{$info['article']['title']}">
+                <label for="bgbrief">公司背景简介</label>
+                <textarea class="form-control" id="bgbrief" name="brief" cols="30" rows="5" disabled="disabled">{$info['brief']}</textarea>
             </div>
             <div class="form-group" style="overflow: hidden;">
-                <label class="is-pic" for="articlepic" data-type="{$info['article']['imgurl'] ? 'true' : 'false'}">文案图片</label>
+                <label class="is-pic" >公司背景图片 <small>图片大小小于2MB</small></label>
                 <div>
-                    <span class="label label-default no-pic" style="display: none;">暂无图片</span>
                     <div class="col-md-3 pic" style="margin-left: -15px;">
                         <a class="thumbnail">
-                            <img src="__PUBLIC__/img/{$info['article']['imgurl']}" alt="...">
+                            <img src="__PUBLIC__/img/{$info['imgurl']}" alt="...">
                         </a>
                     </div>
-                    <input type="file" id="articlepic" name="addpic" class="add-pic" title="添加图片">
-                    <input type="file" id="articlepic" name="changepic" class="change-pic" title="更改图片">
+                    <input type="file" name="changepic" class="change-pic" title="更改图片">
                 </div>
             </div>
             <div class="form-group">
-                <label for="articlecontent">文案内容</label>
-                <textarea class="form-control" id="articlecontent" name="content" cols="30" rows="10" disabled="disabled">{$info['article']['content']}</textarea>
+                <label for="bgcontent">公司背景详情</label>
+                <textarea class="form-control" id="bgcontent" name="content" cols="30" rows="10" disabled="disabled">{$info['content']}</textarea>
             </div>
             <div class="form-group">
-                <button type="button" class="btn btn-warning revise-article">修改文案</button>
+                <button type="button" class="btn btn-warning revise">修改内容</button>
                 <button type="submit" class="btn btn-primary confirm" style="display: none">确认修改</button>
-                <button type="button" class="btn btn-danger del-article">删除文案</button>
             </div>
         </form>
     </div>
 </div>
 <!--Modal-->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">添加文案</h4>
-            </div>
-            <form action="{:U('Article/addArticle')}" enctype="multipart/form-data" method="post">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="articlename">文案标题</label>
-                        <input type="text" class="form-control" id="articlename" name="title" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <label>文案图片</label>
-                        <div>
-                            <input type="file" name="pic" title="添加图片">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="articlecontent">文案内容</label>
-                        <textarea name="content" class="form-control" id="articlecontent" cols="30" rows="10"></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="submit" class="btn btn-primary">确认提交</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 <!--changepwd-->
 <div class="modal fade" id="changepwd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -156,16 +113,9 @@
     $('input[type=file]').bootstrapFileInput();
     $('.file-inputs').bootstrapFileInput();
     $('.change-pic').eq(0).css('display', 'none');
-    $('.add-pic').eq(0).css('display', 'none');
-
-    //判断是否存在照片
-    if (!$('.is-pic').data('type')) {
-        $('.pic').css('display', 'none');
-        $('.no-pic').css('display', 'inline-block');
-    }
 
     //修改文案
-    $('.revise-article').on('click', function () {
+    $('.revise').on('click', function () {
         //解除input,textarea输入限制
         $(this).parents('form').eq(0).find('[disabled=disabled]').each(function (i, ele) {
             $(ele).removeAttr('disabled');
@@ -175,34 +125,8 @@
         //显示确认按钮
         $('.confirm').css('display', 'inline-block');
         //显示图片按钮
-        if ($('.is-pic').data('type')) {
-            $('.pic').css('display', 'none');
-            $('.change-pic').eq(0).css('display', 'inline-block');
-        } else {
-            $('.no-pic').css('display', 'none');
-            $('.add-pic').eq(0).css('display', 'inline-block');
-        }
-    });
-
-    //删除文案
-    $('.del-article').on('click', function (e) {
-        e.preventDefault();
-        $.ajax({
-            type: 'post',
-            url: '{:U("Article/delArticle")}',
-            data: {
-                id: '{$info.id}'
-            },
-            success: function (res) {
-                if (res.status == 200) {
-                    alert('删除成功!');
-                    location.href ='{:U("Article/index")}';
-                }
-            },
-            error: function () {
-                alert('删除失败!');
-            }
-        })
+        $('.pic').css('display', 'none');
+        $('.change-pic').eq(0).css('display', 'inline-block');
     });
 
     //修改密码
