@@ -93,7 +93,7 @@
                 $data = array (
                     'title' => I('post.title'),
                     'content' => I('post.content'),
-                    'date' => date('Y-m-d')
+                    'date' => I('post.date')
                 );
                 $Article->where($article)->save($data);
                 $this->success('修改成功');
@@ -106,7 +106,7 @@
                     'title' => I('post.title'),
                     'content' => I('post.content'),
                     'imgurl' => $info['savepath'].$info['savename'],
-                    'date' => date('Y-m-d')
+                    'date' => I('post.date')
                 );
                 $Article->where($article)->save($data);
                 $this->success('修改成功');
