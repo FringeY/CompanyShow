@@ -73,63 +73,28 @@
                 <button type="submit" class="btn btn-primary confirm" style="display: none">确认修改</button>
             </div>
         </form>
-        <form class="col-md-4" action="{:U('Admin/changeBackground')}" enctype="multipart/form-data" method="post">
-            <div style="display: none;">
-                <input type="text" name="id" value="0">
-            </div>
-            <div class="form-group" style="overflow: hidden;">
-                <label class="is-pic">背景图1 <small>图片大小小于2MB</small>
-                    <button type="button" class="btn btn-xs btn-warning revise-bg" style="margin-left: 10px;">修改背景</button>
-                    <button type="submit" class="btn btn-xs btn-primary confirm" style="display: none">确认修改</button>
-                </label>
-                <div>
-                    <div class="col-md-10 pic" style="margin-left: -15px;">
-                        <a class="thumbnail">
-                            <img src="__PUBLIC__/img/{$bg[0]['imgurl']}" alt="...">
-                        </a>
-                    </div>
-                    <input type="file" id="articlepic" name="changebg" class="change-pic" title="更改图片">
+        <volist name="bgs" id="bg">
+            <form class="col-md-4" action="{:U('Admin/changeBackground')}" id="{$bg.id}" enctype="multipart/form-data" method="post">
+                <div style="display: none;">
+                    <input type="text" name="id" value="0">
                 </div>
-            </div>
-        </form>
-        <form class="col-md-4" action="{:U('Admin/changeBackground')}" enctype="multipart/form-data" method="post">
-            <div style="display: none;">
-                <input type="text" name="id" value="1">
-            </div>
-            <div class="form-group" style="overflow: hidden;">
-                <label class="is-pic">背景图2 <small>图片大小小于2MB</small>
-                    <button type="button" class="btn btn-xs btn-warning revise-bg" style="margin-left: 10px;">修改背景</button>
-                    <button type="submit" class="btn btn-xs btn-primary confirm" style="display: none">确认修改</button>
-                </label>
-                <div>
-                    <div class="col-md-10 pic" style="margin-left: -15px;">
-                        <a class="thumbnail">
-                            <img src="__PUBLIC__/img/{$bg[1]['imgurl']}" alt="...">
-                        </a>
+                <div class="form-group" style="overflow: hidden;">
+                    <label class="is-pic">背景图 <small>图片大小小于2MB</small>
+                        <button type="button" class="btn btn-xs btn-warning revise-bg" style="margin-left: 10px;">修改背景</button>
+                        <button type="submit" class="btn btn-xs btn-primary confirm" style="display: none">确认修改</button>
+                        <button type="button" class="btn btn-xs btn-danger del-bg" style="">删除背景</button>
+                    </label>
+                    <div>
+                        <div class="col-md-10 pic" style="margin-left: -15px;">
+                            <a class="thumbnail">
+                                <img src="__PUBLIC__/img/{$bg['imgurl']}" alt="...">
+                            </a>
+                        </div>
+                        <input type="file" id="articlepic" name="changebg" class="change-pic" title="更改图片">
                     </div>
-                    <input type="file" id="articlepic" name="changebg" class="change-pic" title="更改图片">
                 </div>
-            </div>
-        </form>
-        <form class="col-md-4" action="{:U('Admin/changeBackground')}" enctype="multipart/form-data" method="post">
-            <div style="display: none;">
-                <input type="text" name="id" value="2">
-            </div>
-            <div class="form-group" style="overflow: hidden;">
-                <label class="is-pic">背景图3 <small>图片大小小于2MB</small>
-                    <button type="button" class="btn btn-xs btn-warning revise-bg" style="margin-left: 10px;">修改背景</button>
-                    <button type="submit" class="btn btn-xs btn-primary confirm" style="display: none">确认修改</button>
-                </label>
-                <div>
-                    <div class="col-md-10 pic" style="margin-left: -15px;">
-                        <a class="thumbnail">
-                            <img src="__PUBLIC__/img/{$bg[2]['imgurl']}" alt="...">
-                        </a>
-                    </div>
-                    <input type="file" id="articlepic" name="changebg" class="change-pic" title="更改图片">
-                </div>
-            </div>
-        </form>
+            </form>
+        </volist>
     </div>
 </div>
 <!--changepwd-->
@@ -194,6 +159,28 @@
         $(this).parents('form').find('.confirm').css('display', 'inline-block');
         $(this).parents('form').find('.pic').css('display', 'none');
         $(this).parents('form').find('.change-pic').eq(0).css('display', 'inline-block');
+    });
+
+    //删除图片
+    $('.del-bg').on('click', function (e) {
+        e.preventDefault();
+        var that = this;
+        $.ajax({
+            type: 'post',
+            url: '{:U("Admin/delBackground")}',
+            data: {
+                id: that.parents('form').attr('id')
+            },
+            success: function (res) {
+                if (res.status == 200) {
+                    alert('删除成功!');
+                    location.href ='{:U("Admin/index")}';
+                }
+            },
+            error: function () {
+                alert('删除失败!');
+            }
+        })
     });
 
     //修改密码

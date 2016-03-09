@@ -6,9 +6,9 @@
             $Info = M('information');
             $Bg = M('background');
             $info = $Info -> find();
-            $bg = $Bg -> select();
+            $bgs = $Bg -> select();
             $this -> assign('info', $info);
-            $this -> assign('bg', $bg);
+            $this -> assign('bgs', $bgs);
             $this -> display();
         }
 
@@ -58,6 +58,22 @@
                 $Bg -> where($bg) -> save($data);
                 $this->success('修改成功');
             }
+        }
+
+        public function delBackground () {
+            $Bg = M('background');
+            $bg = array (
+                'id' => I('post.id')
+            );
+            if (($Bg -> count()) <= 1) {
+                $this->error('删除失败,至少保留一张照片');
+            }
+            $imgurl = './Public/img/'.$Bg -> where($bg) -> getField('imgurl');
+            if (file_exists($imgurl)) {
+                unlink($imgurl);
+            }
+            $Bg -> where($bg) -> delete();
+            $this->success('删除成功');
         }
 
         public function changePwd () {

@@ -9,22 +9,8 @@
     <title>泓盛环球</title>
     <link rel="stylesheet" href="__PUBLIC__/css/style.css">
     <script src="__PUBLIC__/js/jquery-1.11.3.js"></script>
-    <script src="__PUBLIC__/js/jquery.mousewheel.min.js"></script>
-    <script src="__PUBLIC__/js/main.js"></script>
     <script>
-        // 加载图片完显示
-        var $bgs = ['__PUBLIC__/img/{$bg[0]["imgurl"]}', '__PUBLIC__/img/{$bg[1]["imgurl"]}', '__PUBLIC__/img/{$bg[2]["imgurl"]}'],
-                imgs = [], imgLoad = 0;
-        $.each($bgs, function (i, ele) {
-            imgs[i] = new Image();
-            imgs[i].src = ele;
-            imgs[i].onload = function () {
-                imgLoad++;
-                if (imgLoad == $bgs.length) {
-                    $('.load-back').fadeOut(1000, 'swing');
-                }
-            }
-        });
+
     </script>
     <!--[if lt IE 9]>
         <script >
@@ -34,6 +20,11 @@
     <![endif]-->
 </head>
 <body>
+    <ul id="vo-imgs" style="display:none;">
+        <volist name="bgs" id="bg">
+            <li class="vo-img">__PUBLIC__/img/{$bg.imgurl}</li>
+        </volist>
+    </ul>
     <div class="load-back">
         <div class="loader">
             <span></span>
@@ -256,7 +247,26 @@
             </div>
         </div>
     </volist>
+    <script src="__PUBLIC__/js/jquery.mousewheel.min.js"></script>
+    <script src="__PUBLIC__/js/main.js"></script>
     <script>
+        // 加载图片完显示
+        var $bgs = [], imgs = [], imgLoad = 0;
+        $('.vo-img').each(function (i, e) {
+            $bgs.push($(e).html());
+        });
+
+        $.each($bgs, function (i, ele) {
+            imgs[i] = new Image();
+            imgs[i].src = ele;
+            imgs[i].onload = function () {
+                imgLoad++;
+                if (imgLoad == $bgs.length) {
+                    $('.load-back').fadeOut(1000, 'swing');
+                }
+            }
+        });
+
         $('.guestpost').on('click', function (e) {
             e.preventDefault();
             $.ajax({
