@@ -169,7 +169,7 @@
             type: 'post',
             url: '{:U("Admin/delBackground")}',
             data: {
-                id: that.parents('form').attr('id')
+                id: $(that).parents('form').attr('id')
             },
             success: function (res) {
                 if (res.status == 200) {
