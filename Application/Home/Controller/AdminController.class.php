@@ -29,6 +29,30 @@
             $this->success('修改成功');
         }
 
+        public function addBackground () {
+            $Bg = M('background');
+
+            $upload = new \Think\Upload();
+            $upload->maxSize = '3145728';
+            $upload->exts = array('jpg','JPG','PNG', 'png','JPEG' ,'jpeg');
+            $upload->rootPath  =  "./Public/img/";
+            $upload->savePath = 'bg/';
+            $upload->saveName = time().'_'.mt_rand();
+            // 上传文件
+            $info   =   $upload->uploadOne($_FILES['addbg']);
+
+            // 上传错误提示错误信息
+            if (!$info) {
+                $this -> error($upload -> getError());
+            } else {// 上传成功
+                $data = array (
+                    'imgurl' => $info['savepath'].$info['savename']
+                );
+                $Bg -> where($bg) -> add($data);
+                $this->success('添加成功');
+            }
+        }
+
         public function changeBackground () {
             $Bg = M('background');
             $bg = array (
@@ -66,14 +90,22 @@
                 'id' => I('post.id')
             );
             if (($Bg -> count()) <= 1) {
-                $this->error('删除失败,至少保留一张照片');
+                $res = array (
+                    'status' => 400,
+                    'info' => '删除失败, 最少保存一张图片'
+                );
+            } else {
+                $imgurl = './Public/img/'.$Bg -> where($bg) -> getField('imgurl');
+                if (file_exists($imgurl)) {
+                    unlink($imgurl);
+                }
+                $Bg -> where($bg) -> delete();
+                $res = array (
+                    'status' => 200,
+                    'info' => '删除成功'
+                );
             }
-            $imgurl = './Public/img/'.$Bg -> where($bg) -> getField('imgurl');
-            if (file_exists($imgurl)) {
-                unlink($imgurl);
-            }
-            $Bg -> where($bg) -> delete();
-            $this->success('删除成功');
+            $this->ajaxReturn($res);
         }
 
         public function changePwd () {

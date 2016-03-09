@@ -95,6 +95,12 @@
                 </div>
             </form>
         </volist>
+        <form class="container" action="{:U('Admin/addBackground')}" enctype="multipart/form-data" method="post">
+            <div class="form-group">
+                <input type="file" name="addbg" class="add-pic" title="添加背景">
+                <button type="submit" class="btn btn-primary confirm" style="margin-left: 20px;">确认</button>
+            </div>
+        </form>
     </div>
 </div>
 <!--changepwd-->
@@ -175,6 +181,8 @@
                 if (res.status == 200) {
                     alert('删除成功!');
                     location.href ='{:U("Admin/index")}';
+                } else {
+                    alert(res.info);
                 }
             },
             error: function () {
