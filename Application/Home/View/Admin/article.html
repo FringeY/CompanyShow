@@ -72,7 +72,7 @@
                             <img src="__PUBLIC__/img/{$info['article']['imgurl']}" alt="...">
                         </a>
                     </div>
-                    <input type="file" id="articlepic" name="addpic" class="add-pic" title="添加图片">
+                    <input type="file" id="articlepic" name="changepic" class="add-pic" title="添加图片">
                     <input type="file" id="articlepic" name="changepic" class="change-pic" title="更改图片">
                 </div>
             </div>
@@ -182,9 +182,11 @@
         if ($('.is-pic').data('type')) {
             $('.pic').css('display', 'none');
             $('.change-pic').eq(0).css('display', 'inline-block');
+            $('.add-pic').remove();
         } else {
             $('.no-pic').css('display', 'none');
             $('.add-pic').eq(0).css('display', 'inline-block');
+            $('.change-pic').remove();
         }
     });
 

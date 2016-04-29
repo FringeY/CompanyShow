@@ -83,11 +83,8 @@
             $upload->savePath = 'articles/';
             $upload->saveName = time().'_'.mt_rand();
             // 上传文件
-            if ($_FILES['changepic']) {
-                $info = $upload->uploadOne($_FILES['changepic']);
-            } else {
-                $info = $upload->uploadOne($_FILES['addpic']);
-            }
+
+            $info = $upload->uploadOne($_FILES['changepic']);
 
             $article = array (
                 'id' => I('post.id')
