@@ -83,13 +83,17 @@
             $upload->savePath = 'articles/';
             $upload->saveName = time().'_'.mt_rand();
             // 上传文件
-            $info   =   $upload->uploadOne($_FILES['changepic']);
-            $info_add = $upload->uploadOne($_FILES['addpic']);
+            if ($_FILES['changepic']) {
+                $info = $upload->uploadOne($_FILES['changepic']);
+            } else {
+                $info = $upload->uploadOne($_FILES['addpic']);
+            }
+
             $article = array (
                 'id' => I('post.id')
             );
             // 上传错误提示错误信息
-            if (!$info && !$info_add) {
+            if (!$info) {
                 // $this -> error($upload -> getError());
                 $data = array (
                     'title' => I('post.title'),
@@ -103,21 +107,13 @@
                 if (file_exists($imgurl)) {
                     unlink($imgurl);
                 }
-                if (info) {
-                    $data = array (
-                        'title' => I('post.title'),
-                        'content' => I('post.content'),
-                        'imgurl' => $info['savepath'].$info['savename'],
-                        'date' => I('post.date')
-                    );
-                } else {
-                    $data = array (
-                        'title' => I('post.title'),
-                        'content' => I('post.content'),
-                        'imgurl' => $info_add['savepath'].$info_add['savename'],
-                        'date' => I('post.date')
-                    );
-                }
+
+                $data = array (
+                    'title' => I('post.title'),
+                    'content' => I('post.content'),
+                    'imgurl' => $info['savepath'].$info['savename'],
+                    'date' => I('post.date')
+                );
 
                 $Article->where($article)->save($data);
                 $this->success('修改成功');
