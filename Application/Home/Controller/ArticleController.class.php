@@ -83,12 +83,13 @@
             $upload->savePath = 'articles/';
             $upload->saveName = time().'_'.mt_rand();
             // 上传文件
-            $info   =   $upload->uploadOne($_FILES['changepic']) ? $upload->uploadOne($_FILES['changepic']) : $upload->uploadOne($_FILES['addpic']);
+            $info   =   $upload->uploadOne($_FILES['changepic']);
+            $info_add = $upload->uploadOne($_FILES['addpic']);
             $article = array (
                 'id' => I('post.id')
             );
             // 上传错误提示错误信息
-            if (!$info) {
+            if (!$info && !$info_add) {
                 // $this -> error($upload -> getError());
                 $data = array (
                     'title' => I('post.title'),
