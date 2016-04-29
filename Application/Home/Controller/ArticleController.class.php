@@ -116,7 +116,7 @@
                 );
 
                 $Article->where($article)->save($data);
-                $this->success('修改成功');
+                $this->success('修改图片成功');
             }
         }
 
