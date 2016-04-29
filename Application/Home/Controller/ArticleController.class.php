@@ -103,12 +103,22 @@
                 if (file_exists($imgurl)) {
                     unlink($imgurl);
                 }
-                $data = array (
-                    'title' => I('post.title'),
-                    'content' => I('post.content'),
-                    'imgurl' => $info['savepath'].$info['savename'],
-                    'date' => I('post.date')
-                );
+                if (info) {
+                    $data = array (
+                        'title' => I('post.title'),
+                        'content' => I('post.content'),
+                        'imgurl' => $info['savepath'].$info['savename'],
+                        'date' => I('post.date')
+                    );
+                } else {
+                    $data = array (
+                        'title' => I('post.title'),
+                        'content' => I('post.content'),
+                        'imgurl' => $info_add['savepath'].$info_add['savename'],
+                        'date' => I('post.date')
+                    );
+                }
+
                 $Article->where($article)->save($data);
                 $this->success('修改成功');
             }
