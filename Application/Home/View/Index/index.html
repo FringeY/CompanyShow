@@ -80,7 +80,7 @@
                 <div class="wrapper">
                     <volist name="services" id="service">
                         <div class="item">
-                            <img src="__PUBLIC__/img/{$service.imgurl}" alt="">
+                            <img class="lazy" data-original="__PUBLIC__/img/{$service.imgurl}" alt="">
                             <div class="item-info">
                                 <h3>{$service.name}</h3>
                                 <p>{$service.brief}</p>
@@ -95,7 +95,7 @@
             <h1>私人财富服务</h1>
             <div class="row">
                 <div class="pic pull-right">
-                    <img src="__PUBLIC__/img/{$finance.imgurl}" alt="">
+                    <img class="lazy" data-original="__PUBLIC__/img/{$finance.imgurl}" alt="">
                 </div>
                 <div class="text">
                     <p class="text-p">
@@ -110,7 +110,7 @@
             <volist name="members" id="member">
                 <div class="row">
                     <div class="pic" style="width: {$key == 0 ? '16%' : '25%'}">
-                        <img src="__PUBLIC__/img/{$member.imgurl}" alt="">
+                        <img class="lazy" data-original="__PUBLIC__/img/{$member.imgurl}" alt="">
                     </div>
                     <div class="text">
                         <div class="text-p">
@@ -164,7 +164,7 @@
                     </ul>
                     <br>
                     <h3>微信二维码</h3>
-                    <img src="__PUBLIC__/img/qrcode.jpg" alt="" width="150">
+                    <img class="lazy" data-original="__PUBLIC__/img/qrcode.jpg" alt="" width="150">
                 </div>
             </form>
         </div>
@@ -241,7 +241,7 @@
             <div class="layer">
                 <h1 class="layer-title">{$vo.title}<i class="layer-close iconfont">&#xe628;</i></h1>
                 <div class="con">
-                    <img src="__PUBLIC__/img/{$vo.imgurl}" alt="">
+                    <img class="lazy" data-original="__PUBLIC__/img/{$vo.imgurl}" alt="">
                     <br><br>
                     <p>{$vo.content}</p>
                 </div>
@@ -249,6 +249,7 @@
         </div>
     </volist>
     <script src="__PUBLIC__/js/jquery.mousewheel.min.js"></script>
+    <script src="__PUBLIC__/js/jquery.lazyload.min.js"></script>
     <script src="__PUBLIC__/js/main.js"></script>
     <script>
         // 加载图片完显示
@@ -264,6 +265,7 @@
                 imgLoad++;
                 if (imgLoad == $bgs.length) {
                     $('.load-back').fadeOut(1000, 'swing');
+                    $("img.lazy").lazyload();
                 }
             }
         });
