@@ -252,6 +252,10 @@
     <script src="__PUBLIC__/js/jquery.lazyload.min.js"></script>
     <script src="__PUBLIC__/js/main.js"></script>
     <script>
+        // 延迟加载
+        $("img.lazy").lazyload({
+            event : "sporty"
+        });
         // 加载图片完显示
         var $bgs = [], imgs = [], imgLoad = 0;
         $('.vo-img').each(function (i, e) {
@@ -265,7 +269,7 @@
                 imgLoad++;
                 if (imgLoad == $bgs.length) {
                     $('.load-back').fadeOut(1000, 'swing');
-                    $("img.lazy").lazyload();
+                    setTimeout(function() { $("img.lazy").trigger("sporty") }, 0);
                 }
             }
         });
