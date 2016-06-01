@@ -80,7 +80,7 @@
                 <div class="wrapper">
                     <volist name="services" id="service">
                         <div class="item">
-                            <img class="lazy" data-original="__PUBLIC__/img/{$service.imgurl}" alt="">
+                            <img src="__PUBLIC__/img/{$service.imgurl}" alt="">
                             <div class="item-info">
                                 <h3>{$service.name}</h3>
                                 <p>{$service.brief}</p>
@@ -95,7 +95,7 @@
             <h1>私人财富服务</h1>
             <div class="row">
                 <div class="pic pull-right">
-                    <img class="lazy" data-original="__PUBLIC__/img/{$finance.imgurl}" alt="">
+                    <img src="__PUBLIC__/img/{$finance.imgurl}" alt="">
                 </div>
                 <div class="text">
                     <p class="text-p">
@@ -110,7 +110,7 @@
             <volist name="members" id="member">
                 <div class="row">
                     <div class="pic" style="width: {$key == 0 ? '16%' : '25%'}">
-                        <img class="lazy" data-original="__PUBLIC__/img/{$member.imgurl}" alt="">
+                        <img src="__PUBLIC__/img/{$member.imgurl}" alt="">
                     </div>
                     <div class="text">
                         <div class="text-p">
