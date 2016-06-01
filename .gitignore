@@ -5,3 +5,4 @@ Application/Runtime/*
 .DS_Store
 .idea
 Application/Home/Conf/config.php
+Public/img
